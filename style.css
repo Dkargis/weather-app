@@ -1,0 +1,22 @@
+header{
+    justify-content: center;
+    align-items: center;
+    background-color: blue;
+    padding: 50px;
+
+}
+
+.card{
+    background-color: lightblue;
+    padding: 50px;
+    margin: 50px;
+    display: flex;
+
+}
+
+.search{
+    background-color: tan;
+    padding: 50px;
+    margin: 50px;
+
+}
