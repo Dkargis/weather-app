@@ -20,3 +20,39 @@ header{
     margin: 50px;
 
 }
+
+
+.weather-card {
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+    margin: 10px;
+    max-width: 300px;
+    overflow: hidden;
+  }
+  
+
+  .weather-card h2 {
+    background-color: #0077be;
+    color: #fff;
+    font-size: 24px;
+    margin: 0;
+    padding: 10px;
+    text-align: center;
+  }
+  
+ 
+  .weather-card p {
+    font-size: 18px;
+    margin: 10px;
+  }
+  
+
+  .weather-card img {
+    display: block;
+    margin: auto;
+    max-width: 100%;
+    padding: 10px;
+  }
+  

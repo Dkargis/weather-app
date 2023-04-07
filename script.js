@@ -12,6 +12,7 @@ function getWeather(city) {
         return response.json();
     })
     .then(function (data) {
+        $(".Five-Day-Forceast").empty();
         console.log(data);
         for (var i = 0; i < 5; i++) {
             var weather = {
@@ -57,30 +58,43 @@ submitBTN.addEventListener("click", searchCity);
 
 // This funtion makes it so the button will create elements to display the weather for the city searched in the search bar in the Five Day Forecast section
 function displayWeather(weather) {
-    var weatherDiv = document.createElement("div");
-    var weatherCity = document.createElement("h2");
-    var weatherTemp = document.createElement("p");
-    var weatherHumidity = document.createElement("p");
-    var weatherWind = document.createElement("p");
-    var weatherUV = document.createElement("p");
-    var weatherIcon = document.createElement("img");
-    var weatherDate = document.createElement("p");
-    weatherCity.textContent = weather.city;
-    weatherTemp.textContent = weather.temp;
-    weatherHumidity.textContent = weather.humidity;
-    weatherWind.textContent = weather.wind;
-    weatherUV.textContent = weather.uv;
-    weatherIcon.src = weather.icon;
-    weatherDate.textContent = weather.date;
-    weatherDiv.appendChild(weatherCity);
-    weatherDiv.appendChild(weatherTemp);
-    weatherDiv.appendChild(weatherHumidity);
-    weatherDiv.appendChild(weatherWind);
-    weatherDiv.appendChild(weatherUV);
-    weatherDiv.appendChild(weatherIcon);
-    weatherDiv.appendChild(weatherDate);
-    document.getElementById("Five-Day-Forecast").appendChild(weatherDiv);
-}
+ 
+    
+        var weatherDiv = document.createElement("div");
+        weatherDiv.className = "weather-card"; // add class name to the div
+    
+        var weatherCity = document.createElement("h2");
+        var weatherTemp = document.createElement("p");
+        var weatherHumidity = document.createElement("p");
+        var weatherWind = document.createElement("p");
+        var weatherUV = document.createElement("p");
+        var weatherIcon = document.createElement("img");
+        var weatherDate = document.createElement("p");
+
+        weatherCity.textContent = weather.city;
+        weatherTemp.textContent = "Temperature: " + convertKelvinToFahrenheit(weather.temp).toFixed(1) + " °F";
+        weatherHumidity.textContent = weather.humidity + "%";
+        weatherWind.textContent = weather.wind + " MPH";
+        weatherUV.textContent = weather.uv;
+        weatherIcon.src = weather.icon;
+        weatherDate.textContent = weather.date + " Date";; 
+        
+        weatherIcon.setAttribute("src", "http://openweathermap.org/img/w/" + weatherIcon + ".png");
+        weatherDiv.appendChild(weatherCity);
+        weatherDiv.appendChild(weatherTemp);
+        weatherDiv.appendChild(weatherHumidity);
+        weatherDiv.appendChild(weatherWind);
+        weatherDiv.appendChild(weatherUV);
+        weatherDiv.appendChild(weatherIcon);
+        weatherDiv.appendChild(weatherDate);
+        document.getElementById("Five-Day-Forecast").appendChild(weatherDiv);
+    }
+    
+    function convertKelvinToFahrenheit(tempK) {
+        return (tempK - 273.15) * 1.8 + 32;
+    }
+    
+
 
 // this funtion will convert the longitude and latitude to a city name
 function convertToCity(lat, lon) {
