@@ -52,6 +52,8 @@ function searchCity() {
     console.log("Searching for city: " + city);
     getWeather(city);
     console.log(city);
+    saveCity();
+    createCityButton();
 }   
 var submitBTN = document.getElementById("submit-btn");
 submitBTN.addEventListener("click", searchCity);
@@ -115,13 +117,37 @@ function convertToCity(lat, lon) {
 };
 
 // This funtion will make it so the city searched will be saved in local storage
-function saveCity() {
-    var city = document.getElementById("City-Search").value;
+function saveCity() {   
+    var city = document.getElementById("city-input").value;
     localStorage.setItem("city", city);
+    console.log(city);
+    logCity();
 }
+
 
 //this function will console log the city searched
 function logCity() {
     var city = localStorage.getItem("city");
     console.log(city);
 }
+
+// This funtion will create a button under the search bar for the city searched and when it is clicked it will display the weather for that city
+function createCityButton() {
+    var city = document.getElementById("city-input").value;
+    var cityButton = document.createElement("button");
+    cityButton.className = "city-button";
+    cityButton.textContent = city;
+    document.getElementById("city-buttons").appendChild(cityButton);
+    cityButton.addEventListener("click", searchCity);
+}
+
+// This funtion will create a button next to the search bar that will clear the weather for the city searched
+function clearWeather() {
+    var weatherDiv = document.createElement("div");
+    weatherDiv.className = "weather-card";
+    weatherDiv.innerHTML = "";
+    document.getElementById("Five-Day-Forecast").appendChild(weatherDiv);
+}
+
+clearWeather();
+
